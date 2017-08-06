@@ -30,7 +30,36 @@ public final class MyTokenReader implements TokenReader {
   public MyTokenReader(String source) {
     // Your token reader will only be given a string for input. The string will
     // contain the whole source (0 or more lines).
-  }
+
+    //this will be where the string is taken in
+    //and whitespace is removed but then it will call next?
+    Pattern namesPattern = Pattern.compile("^[A-Z][a-z]+$");
+    Pattern numberPattern = Pattern.compile("^[0-9]+\.[0-9]+?");
+    Pattern symbolPattern = Pattern.compile("[]");
+    Pattern stringPattern = Pattern.compile(".");
+
+    Matcher nameMatcher = namesPattern.matcher(source);
+    Matcher numberMatcher = numberPattern.matcher(source);
+    Matcher symbolMatcher = symbolPattern.matcher(source);
+    Matcher stringMatcher = stringPattern.matcher(source);
+
+
+   for(int i = 1; i++; i<nameMatcher.length()){
+     System.out.println(NameToken(nameMatcher.group(i)));
+   }
+
+  for(int i = 1; i++; i<numberMatcher.length()){
+      System.out.println(NumberToken(NumberMatcher.group(i)));
+      }
+
+   for(int i = 1; i++; i<symbolMatcher.length()){
+      System.out.println(symbolMatcher.group(i));
+         }
+
+  for(int i = 1; i++; i<stringMatcher.length()){
+      System.out.println(StringToken(stringMatcher.group(i)));
+        }
+}
 
   @Override
   public Token next() throws IOException {
@@ -40,6 +69,28 @@ public final class MyTokenReader implements TokenReader {
 
     // If for any reason you detect an error in the input, you may throw an IOException
     // which will stop all execution.
+
+
+    // NEXT
+    //
+    // Get the next token in the stream. When the end of stream has been reached
+    // |next| should return |null|. The only valid tokens that can be returned are:
+    //  - com.google.codeu.mathlang.core.tokens.StringToken
+    //  - com.google.codeu.mathlang.core.tokens.NameToken
+    //  - com.google.codeu.mathlang.core.tokens.SymbolToken
+    //  - com.google.codeu.mathlang.core.tokens.NumberToken
+    // If there is ever a problem with the source data, |next| should throw an
+    // IOException.
+
+    //this will go through the token and find matching tokebns
+    //and then return/print them in the correct type
+    //and I guess if it doesn't find anything then
+    //return the exception?
+    //basically return null when each of the groups
+    //with the strings from regex have run out?
+
+
+
 
     return null;
   }
